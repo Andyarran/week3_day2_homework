@@ -18,7 +18,7 @@ class Donut
     sql = "INSERT INTO donuts
       (brand, name, dairy_free, calories)
       VALUES 
-      ('#{brand}', '#{name}', #{dairy_free}, #{calories}) 
+      ('#{@brand}', '#{@name}', #{@dairy_free}, #{@calories}) 
       RETURNING id;"
     @id = db.exec(sql)[0]['id'].to_i
     db.close
@@ -28,7 +28,7 @@ class Donut
     db = PG.connect( { dbname: 'donuts', host: 'localhost' } )
     sql = "UPDATE donuts SET
       (brand, name, dairy_free, calories) =
-      ('#{brand}', '#{name}', #{dairy_free}, #{calories}) 
+      ('#{@brand}', '#{@name}', #{@dairy_free}, #{@calories}) 
       WHERE id = #{@id};"
     @id = db.exec(sql)
     db.close
